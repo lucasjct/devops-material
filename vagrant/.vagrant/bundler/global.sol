@@ -1,0 +1,1 @@
+{"dependencies":[["provision",["= 0.0.1"]]],"checksum":"fce19b5f1cf6307c75c692540a37652ae485176e4d0f9e325af6bee3bc3caca2","vagrant_version":"2.2.19"}

@@ -1,0 +1,51 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby  :
+
+# a variável node como um dicionário com box e recursos necessários para a vm
+
+nodes = {
+  "master" => {"box" => "bento/ubuntu-22.04", 
+              "cpu" => "1", 
+              "mem" => "1024", 
+              "ip" => "100"},
+
+  "node2" => {"box" => "bento/ubuntu-22.04",
+              "cpu" => "1", 
+              "mem" => "1024",
+              "ip" => "101"},
+
+  "node3" => {"box" => "bento/ubuntu-22.04", 
+              "cpu" => "1", 
+              "mem" => "1024",
+              "ip" => "102"}
+}
+
+
+Vagrant.configure("2") do |config|
+# configuração de cada node a partir de uma iteração no dicionário "nodes"
+
+  nodes.each do |name, conf|
+    config.vm.define "#{name}" do |node|
+      node.vm.box = "#{conf["box"]}"
+      node.vm.hostname = "#{name}"
+      node.vm.network "private_network", ip:"10.10.10.#{conf["ip"]}"
+
+      node.vm.provider "virtualbox" do |vb|
+        vb.name = "#{name}"
+        vb.memory = conf["mem"]
+        vb.cpus = conf["cpu"]
+
+      end
+      node.vm.provision "shell", path: "docker.sh"
+
+# condição necessário para executar o docker swarm
+
+      if "#{name}" == "master"
+        node.vm.provision "shell", path: "master.sh"
+      else
+        node.vm.provision "shell ", path: "worker.sh"
+      end
+
+    end
+  end
+end
