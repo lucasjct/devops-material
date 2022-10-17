@@ -9,14 +9,17 @@
 `docker container ls -a`   
 
 * Executar container:   
-`docker container run <nome-container>`  
+`docker container run <nome-container>`   
 
-* Executar e nomear containers:  
-`docker run -dti <name> <imagem>`  
-Exemplo: `docker container run -dti ubuntu-dbserver ubuntu`  
+* Executar container para interagir com a linha de comando do próprio container:   
+`docker container run -ti <nome-container>`   
 
 * Entrar e executar comandos bash no container:  
-`docker container exec -ti <id_container> bash`  
+`docker container exec -ti <id_container> bash`   
+
+* Executar e nomear containers:  
+`docker run -dti <name> <imagem>`    
+Exemplo: `docker container run -dti ubuntu-dbserver ubuntu`   
 
 * Copiar um arquivo para um container:   
 `docker cp arquivo.ext <name_container>:/<diretorio>`    
