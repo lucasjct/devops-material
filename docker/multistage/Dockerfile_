@@ -1,0 +1,9 @@
+FROM python:3.10-bullseye AS exec_scrpit
+
+WORKDIR /app
+ADD app.py /app
+
+FROM python:3.10-bullseye
+WORKDIR /app-python
+COPY --from=exec_scrpit /app /app-python/
+ENTRYPOINT python app.py
