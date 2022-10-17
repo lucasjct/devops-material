@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 def obter_nome():
     name = input("Nome: ")
     return name

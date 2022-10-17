@@ -1,7 +1,9 @@
-FROM python
+FROM python:3.10-bullseye AS exec_scrpit
 
-WORKDIR /usr/src/app
+WORKDIR /app
+ADD app.py /app
 
-COPY app.py /usr/src/app
-
-CMD ["python", '/usr/src/app']
+FROM python:3.10-bullseye
+WORKDIR /app-python
+COPY --from=exec_scrpit /app /app-python/
+ENTRYPOINT python app.py

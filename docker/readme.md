@@ -1,3 +1,6 @@
+# Comandos Docker
+
+
 * baixar imagem:  
 `docker pull <nome-imagem>`   
 
@@ -110,13 +113,13 @@ Exlucir todos os volumes que foram gerados no host:
 Posso estressar o container utilizando o programa stress: `apt update && apt install stress`
 
 ### Verificar infos do container
-docker container infos <nome-do-container>
+`docker container infos <nome-do-container>`
 
 ### Verficar logs
-docker container logs <nome-do-container>  
+`docker container logs <nome-do-container>`  
 
 ### Verificar processoss em execução
-docker container top <nome-do-container>   
+`docker container top <nome-do-container>`   
 
 ### Redes  
 
@@ -129,9 +132,4 @@ docker container top <nome-do-container>
 * criar uma rede para isolar a comunicação entre containers:  
 `docker network create minha-rede` 
 	* Conectar container na rede criada:  
-		`docker container run -d -ti --name ubuntu-teste --network minha-rede ubuntu`
-
-
-
-
-
+`docker container run -d -ti --name ubuntu-teste --network minha-rede ubuntu`
