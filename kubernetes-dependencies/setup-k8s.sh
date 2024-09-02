@@ -20,14 +20,6 @@ chmod +x kubectl
 mv kubectl /usr/local/bin/
 kubectl version --output=yaml
 
-# DOCKER
-if command -v docker &> /dev/null; then
-    echo "Docker already installed."
-   
-else 
-    curl -fsSL https://get.docker.com | bash
-    docker version
-fi
 
 # KIND
 CPU_ARCH=$(uname -m)
@@ -48,6 +40,16 @@ else
     echo "Something is wrong, fix it and triy again."
 fi
 
+# DOCKER
+if command -v docker &> /dev/null; then
+    echo "Docker already installed."
+   
+else 
+    curl -fsSL https://get.docker.com | bash
+    docker version
+fi
+
+
 # HELM
 echo "Installing HELM"
 curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
@@ -56,7 +58,6 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.
 sudo apt-get update
 sudo apt-get install helm
 helm version
-
 
 SKIP=0 
 while [ "$SKIP" == 0 ]
